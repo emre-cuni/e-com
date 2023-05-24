@@ -1,0 +1,47 @@
+sepet uygulamasýnda 2 farklý giriþ olacak admin ve customer olarak
+adminin ürün ekleme ve fiyat düzenleme yetkisi olacak
+customer ürünleri istek listesine ve sepete ekleyebilecek
+sepete eklenen ödemeler sanal ödeme ekraný yap(customer'ýn db'de kayýtlý kart bilgilerini girince customer'ýn mail adresine kod gönder)
+kart numarasýný girerken anlýk kontrol yapýlabilir(doðru numara girildiðinde yanýnda yeþil bir tik gibi
+customer kayýt sekmesi de olacak
+admin kaydý admin giriþinden sonra yapýlabilecek
+db'de ürün fotosu da olsun
+ekrana sýðmayacak ürün sayýsýný scrollbar'la nasýl kaydýracaðýna bak
+db'ye kayýtlar þifrelenerek eklenecek
+(panel iþe yarýyor gibi//flow panel'e de bak)https://www.technopat.net/sosyal/konu/windows-formun-icinde-kaydirmali-bir-alan-yapma.1752148/
+customer giriþ yapýnca rastgele ürünler listelenecek
+görüntüleme seçenekleri eklenebelir(2.fazda)
+ürün seçildiði zaman mini form açýlacak ürün detaylarý yazacak
+sepet ekranýnda sepetteki ürünler arttýrýlabilir,azaltýlabilir,silinebilir olacak
+mail textBoxlarýnda "@" olup olmadýðýný kontrol et
+"Kayýt ol"a týklanýnca form'un text'ini deðiþtir tekrar "Kayýt Ol"dan "Giriþ Yap"a geçince de deðiþtir
+Admin giriþini 2. fazda yap
+Doðum günü olan müþteriye doðum günü mesajý yayýnla
+Main formu açýlýnca bütün kategoriler açýk gelsin
+Kayýt yapýldýktan sonra otomatik giriþ yap sayfasýna atsýn
+Hata logu tuttur pop-up'larda kýsa mesaj ver log'a yönlendir
+Textbox'larý büyüt mail sýðmýyor(kredi kartýný da kontrol et) //loginform
+
+***************************************************************************************************
+* ayný email,isimle kayýt yapýlamasýn
+* maili lower yap
+* kayýdý yaptýktan sonra giriþ yap - giriþ yaptýktan sonra kayýt yap
+
+20.05.2023
+** admin uygulamasýný yaz XX
+** veritabanýnýn yeniden oluþtur(kategori ile birlikte) XX
+** button, textbox ve  picturebox'ý ekleyecek yöntem bul XX
+** sql read ve get metotlarýný tekte almaya çalýþ; 
+** ürün adlarýndan otomatik alt satýra indir 
+
+21.05.2023
+* description sayfasýnda ürün resmi, ürün açýklamasý, counter ve sepete ekle butonu
+* 2. fazda stok durumu ekle
+* github'a yüklerken setup dosyasý ekle
+
+24.05.2023
+* treeview'da seçilen node'dan filtreleme yap
+
+
+***************************************************************************************************
+splitter kullanýmýna bak
