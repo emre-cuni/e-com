@@ -113,7 +113,6 @@
             this.textBoxLoginPassword.PasswordChar = '*';
             this.textBoxLoginPassword.Size = new System.Drawing.Size(203, 24);
             this.textBoxLoginPassword.TabIndex = 2;
-            this.textBoxLoginPassword.Text = "0401";
             // 
             // textBoxLoginMail
             // 
@@ -123,7 +122,6 @@
             this.textBoxLoginMail.Name = "textBoxLoginMail";
             this.textBoxLoginMail.Size = new System.Drawing.Size(203, 24);
             this.textBoxLoginMail.TabIndex = 1;
-            this.textBoxLoginMail.Text = "wtcranos@gmail.com";
             // 
             // label1
             // 
@@ -269,7 +267,6 @@
             this.textBoxRegisterMail.Name = "textBoxRegisterMail";
             this.textBoxRegisterMail.Size = new System.Drawing.Size(183, 24);
             this.textBoxRegisterMail.TabIndex = 2;
-            this.textBoxRegisterMail.Text = "wtcranos@gmail.com";
             // 
             // textBoxRegisterSurname
             // 

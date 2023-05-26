@@ -5,19 +5,19 @@ sepete eklenen ödemeler sanal ödeme ekraný yap(customer'ýn db'de kayýtlý kart bi
 kart numarasýný girerken anlýk kontrol yapýlabilir(doðru numara girildiðinde yanýnda yeþil bir tik gibi
 customer kayýt sekmesi de olacak
 admin kaydý admin giriþinden sonra yapýlabilecek
-db'de ürün fotosu da olsun
-ekrana sýðmayacak ürün sayýsýný scrollbar'la nasýl kaydýracaðýna bak
+XX db'de ürün fotosu da olsun XX 
+XX ekrana sýðmayacak ürün sayýsýný scrollbar'la nasýl kaydýracaðýna bak XX
 db'ye kayýtlar þifrelenerek eklenecek
-(panel iþe yarýyor gibi//flow panel'e de bak)https://www.technopat.net/sosyal/konu/windows-formun-icinde-kaydirmali-bir-alan-yapma.1752148/
-customer giriþ yapýnca rastgele ürünler listelenecek
-görüntüleme seçenekleri eklenebelir(2.fazda)
-ürün seçildiði zaman mini form açýlacak ürün detaylarý yazacak
+XX (panel iþe yarýyor gibi//flow panel'e de bak)https://www.technopat.net/sosyal/konu/windows-formun-icinde-kaydirmali-bir-alan-yapma.1752148/ XX
+XX customer giriþ yapýnca rastgele ürünler listelenecek XX //bütün ürünler listeleniyor
+XX görüntüleme seçenekleri eklenebelir(2.fazda) XX
+XX ürün seçildiði zaman mini form açýlacak ürün detaylarý yazacak XX
 sepet ekranýnda sepetteki ürünler arttýrýlabilir,azaltýlabilir,silinebilir olacak
 mail textBoxlarýnda "@" olup olmadýðýný kontrol et
 "Kayýt ol"a týklanýnca form'un text'ini deðiþtir tekrar "Kayýt Ol"dan "Giriþ Yap"a geçince de deðiþtir
 Admin giriþini 2. fazda yap
 Doðum günü olan müþteriye doðum günü mesajý yayýnla
-Main formu açýlýnca bütün kategoriler açýk gelsin
+XX Main formu açýlýnca bütün kategoriler açýk gelsin XX
 Kayýt yapýldýktan sonra otomatik giriþ yap sayfasýna atsýn
 Hata logu tuttur pop-up'larda kýsa mesaj ver log'a yönlendir
 Textbox'larý büyüt mail sýðmýyor(kredi kartýný da kontrol et) //loginform
@@ -35,13 +35,24 @@ Textbox'larý büyüt mail sýðmýyor(kredi kartýný da kontrol et) //loginform
 ** ürün adlarýndan otomatik alt satýra indir 
 
 21.05.2023
-* description sayfasýnda ürün resmi, ürün açýklamasý, counter ve sepete ekle butonu
+* description sayfasýnda ürün resmi, ürün açýklamasý, counter ve sepete ekle butonu XX //counter ve sepete ekle 2. fazda olacak description formatlamasý düzenlenecek
 * 2. fazda stok durumu ekle
 * github'a yüklerken setup dosyasý ekle
 
 24.05.2023
-* treeview'da seçilen node'dan filtreleme yap
+* treeview'da seçilen node'dan filtreleme yap XX 
 
+26.05.2023
+* markaya göre filtreleme XX
+* kategoriye göre filtreleme yapýldýktan sonra karýþýk hale geri dönme // homepage butonu ile yapýlabilir
+* seçili filtreleri temizleme seçeneði ekle
+* en son commit'te start formu düzelt
+* login formda giriþ yap ve kayýt ol sekmelerinin back color'ý farklý olsun
+* ücret filtresini ekle XX
+* ücret filtresine negatif deðer girildiðinde ?
+* veritabanýný yeniden oluþtur price kýsmýný düzenleyerek //decimal(4,3)3'ü ondalýk nokta olmak üzere toplam 4 basamak olduðu anlamýna gelir. Deðerler ile sýnýrlýysa, 99.999o zaman decimal(5,3)tamam olacaktýr.
+* filtreleme yapýldýktan sonra description sayfasýndaki resimler hatalý !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! fotoðraflarý imagelist'ten çektiði için olabilir
+* textboxlara placeholder ekle
 
 ***************************************************************************************************
 splitter kullanýmýna bak

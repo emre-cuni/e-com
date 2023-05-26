@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxPrice = new System.Windows.Forms.GroupBox();
             this.buttonPriceFilter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,7 +49,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.groupBoxPrice);
             this.panel1.Controls.Add(this.groupBoxTrade);
             this.panel1.Controls.Add(this.groupBoxCategory);
@@ -59,16 +57,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(256, 744);
             this.panel1.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(44, 662);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 39);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "ürün ekle";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBoxPrice
             // 
@@ -111,7 +99,7 @@
             this.textBoxMaxPrice.Location = new System.Drawing.Point(112, 26);
             this.textBoxMaxPrice.Name = "textBoxMaxPrice";
             this.textBoxMaxPrice.Size = new System.Drawing.Size(71, 24);
-            this.textBoxMaxPrice.TabIndex = 0;
+            this.textBoxMaxPrice.TabIndex = 1;
             // 
             // textBoxMinPrice
             // 
@@ -142,6 +130,7 @@
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(230, 175);
             this.checkedListBox1.TabIndex = 0;
+            this.checkedListBox1.Click += new System.EventHandler(this.checkedListBox1_Click);
             // 
             // groupBoxCategory
             // 
@@ -163,7 +152,7 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(231, 250);
             this.treeView1.TabIndex = 0;
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
+            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
             // 
             // imageList1
             // 
@@ -217,7 +206,6 @@
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.GroupBox groupBoxCategory;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ImageList imageList1;
     }
 }

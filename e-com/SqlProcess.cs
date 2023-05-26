@@ -79,6 +79,8 @@ namespace e_com
                 sqlDataAdapter = new SqlDataAdapter(new SqlCommand(command, conn));
                 dataSet = new DataSet();
                 sqlDataAdapter.Fill(dataSet);
+                sqlDataAdapter.Dispose();
+                
             }
             catch (Exception ex)
             {

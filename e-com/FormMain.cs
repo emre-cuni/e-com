@@ -26,22 +26,147 @@ namespace e_com
         PictureBox pictureBox;
         System.Windows.Forms.Label labelProductName;
         System.Windows.Forms.Label labelProductPrice;
-        string query = "Select * From Table_Product";
+        string query = null;
         SqlProcess sqlProcess = new SqlProcess();
         public byte[] photo;
         FormShopCart formShopCart = new FormShopCart();
+        double minPrice = 0, maxPrice;
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             try
             {
-                if (!sqlProcess.SqlConn(sqlProcess.connString))
+                if (!sqlProcess.SqlConn(sqlProcess.connString)) // veritabanı kontrolü yapılır
                 {
                     this.Enabled = false;
                     MessageBox.Show("SQL Bağlantısı Kurulamadı!", "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                sqlProcess.SqlGetProduct(query);
+                query = "Select * From Table_Product";
+                ListProducts(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "FormMain Load Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void panelDescription_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Panel panel = null;
+                PictureBox pictureBox = null;
+                System.Windows.Forms.Label label;
+                FormDescription formDescription = new FormDescription();
+                int indis = 0;
+
+                if (sender.GetType() == typeof(Panel)) //panel'den tıklandıysa panel'in tag'ı index olarak alınır
+                {
+                    panel = (Panel)sender;
+                    indis = int.Parse(panel.Tag.ToString());
+                }
+                else if (sender.GetType() == typeof(PictureBox)) //pictureBox'tan tıklandıysa pictureBox'ın tag'ı index olarak alınır
+                {
+                    pictureBox = (PictureBox)sender;
+                    indis = int.Parse(pictureBox.Image.Tag.ToString());
+                }
+                else if (sender.GetType() == typeof(System.Windows.Forms.Label)) //label'dan tıklandıysa label'ın tag'ı index olarak alınır
+                {
+                    label = (System.Windows.Forms.Label)sender;
+                    indis = int.Parse(label.Tag.ToString());
+                }
+                formDescription.pictureBox1.Image = imageList1.Images[indis];
+                formDescription.labelName.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productName"].ToString();
+                formDescription.labelBrand.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productBrand"].ToString();
+                formDescription.labelPrice.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productPrice"].ToString();
+                formDescription.labelDescription.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productDescription"].ToString();
+                formDescription.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Panel Click Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonAddToCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Button button = (Button)sender;
+
+                string price = sqlProcess.dataSet.Tables[0].Rows[int.Parse(button.Tag.ToString())]["productPrice"].ToString();
+
+                double total = double.Parse(price);
+                photo = (byte[])sqlProcess.dataSet.Tables[0].Rows[int.Parse(button.Tag.ToString())]["productPhoto"];
+                MemoryStream memoryStream = new MemoryStream(photo);
+
+                if (!formShopCart.shopCart.ContainsKey(button.Name))
+                    formShopCart.shopCart.Add(button.Name, Tuple.Create(1, total, Image.FromStream(memoryStream)));
+                else
+                    formShopCart.shopCart[button.Name] = Tuple.Create(2, total, Image.FromStream(memoryStream));
+
+                MessageBox.Show("Ürün Sepete Eklendi.", "BİLGİ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                memoryStream.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Sepete Ekle Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void buttonPriceFilter_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear();
+                double.TryParse(textBoxMinPrice.Text, out minPrice);
+                double.TryParse(textBoxMaxPrice.Text, out maxPrice);
+                
+                if(minPrice > maxPrice)
+                {
+                    double temp = maxPrice;
+                    maxPrice = minPrice;
+                    minPrice = temp;
+                    textBoxMinPrice.Text = minPrice.ToString();
+                    textBoxMaxPrice.Text = maxPrice.ToString();
+                }
+                if (maxPrice == 0)
+                    maxPrice = double.MaxValue;
+                MessageBox.Show(minPrice + "\n" + maxPrice);
+                query = $"Select * From Table_Product Where productPrice >= '{minPrice}' And productPrice <= '{maxPrice}'";
+                ListProducts(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Ücret Filtre Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            try
+            {
+                flowLayoutPanel1.Controls.Clear(); //listelenen ürünler temizlenir 
+                if (treeView1.SelectedNode.Parent == null) //istenilen kategorideki ürünlerin listelenmesi için sql sorgusu hazırlanır
+                    query = $"Select * From Table_Product Where productSupCategory = '{treeView1.SelectedNode.Text}'";
+                else
+                    query = $"Select * From Table_Product Where productSubCategory = '{treeView1.SelectedNode.Text}'";
+
+                ListProducts(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Kategori Seçim Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ListProducts(string filterQuery) // ürünleri listeleyen metod
+        {
+            try
+            {
+                sqlProcess.SqlGetProduct(filterQuery);
                 for (int i = 0; i < sqlProcess.dataSet.Tables[0].Rows.Count; i++)
                 {
                     photo = (byte[])sqlProcess.dataSet.Tables[0].Rows[i]["productPhoto"];
@@ -125,26 +250,19 @@ namespace e_com
                             foreach (TreeNode childNode in node.Nodes)
                             {
                                 if (childNode.Text == productSubCategory)
-                                {
-                                    // Alt kategori zaten var, çık ve işlemi bitir
                                     childeNodeExists = true;
-                                }
                             }
                             break;
                         }
                     }
 
                     if (!parentNodeExists)
-                    {
                         treeView1.Nodes.Add(productSupCategory);
-                    }
 
                     // Yeni alt kategoriyi ekle
                     TreeNode parentNode = treeView1.Nodes.Cast<TreeNode>().FirstOrDefault(n => n.Text == productSupCategory);
                     if (!childeNodeExists)
-                    {
                         parentNode.Nodes.Add(productSubCategory);
-                    }
 
                     //markaların eklenmesi
                     string brand = sqlProcess.dataSet.Tables[0].Rows[i]["productBrand"].ToString().Trim();
@@ -155,91 +273,39 @@ namespace e_com
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "FormMain Load Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "ListProducts Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void panelDescription_Click(object sender, EventArgs e)
+        private void checkedListBox1_Click(object sender, EventArgs e)
         {
             try
             {
-                Panel panel = null;
-                PictureBox pictureBox = null;
-                System.Windows.Forms.Label label;
-                FormDescription formDescription = new FormDescription();
-                int indis = 0;
+                flowLayoutPanel1.Controls.Clear();
+                query = "Select * From Table_Product ";
+                checkedListBox1.SetItemChecked(checkedListBox1.SelectedIndex, !checkedListBox1.GetItemChecked(checkedListBox1.SelectedIndex));
 
-                if (sender.GetType() == typeof(Panel)) //panel'den tıklandıysa panel'in tag'ı index olarak alınır
+                
+                if (checkedListBox1.CheckedItems.Count > 0)
                 {
-                    panel = (Panel)sender;
-                    indis = int.Parse(panel.Tag.ToString());
+                    query += "Where";
+                    foreach (string title in checkedListBox1.CheckedItems)
+                    {
+                        if (checkedListBox1.CheckedItems[0].ToString() == title)
+                            query += $" productBrand = '{title}'";
+                        else
+                            query += $" Or productBrand = '{title}'";
+                    }
+                        
                 }
-                else if (sender.GetType() == typeof(PictureBox)) //pictureBox'tan tıklandıysa pictureBox'ın tag'ı index olarak alınır
-                {
-                    pictureBox = (PictureBox)sender;
-                    indis = int.Parse(pictureBox.Image.Tag.ToString());
-                }
-                else if (sender.GetType() == typeof(System.Windows.Forms.Label)) //label'dan tıklandıysa label'ın tag'ı index olarak alınır
-                {
-                    label = (System.Windows.Forms.Label)sender;
-                    indis = int.Parse(label.Tag.ToString());
-                }
-                formDescription.pictureBox1.Image = imageList1.Images[indis];
-                formDescription.labelName.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productName"].ToString();
-                formDescription.labelBrand.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productBrand"].ToString();
-                formDescription.labelPrice.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productPrice"].ToString();
-                formDescription.labelDescription.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productDescription"].ToString();
-                formDescription.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Panel Click Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void buttonAddToCart_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Button button = (Button)sender;
-
-                string price = sqlProcess.dataSet.Tables[0].Rows[int.Parse(button.Tag.ToString())]["productPrice"].ToString();
-
-                double total = double.Parse(price);
-                photo = (byte[])sqlProcess.dataSet.Tables[0].Rows[int.Parse(button.Tag.ToString())]["productPhoto"];
-                MemoryStream memoryStream = new MemoryStream(photo);
-
-                if (!formShopCart.shopCart.ContainsKey(button.Name))
-                    formShopCart.shopCart.Add(button.Name, Tuple.Create(1, total, Image.FromStream(memoryStream)));
-                else
-                    formShopCart.shopCart[button.Name] = Tuple.Create(2, total, Image.FromStream(memoryStream));
-
-                MessageBox.Show("Ürün Sepete Eklendi.", "BİLGİ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                memoryStream.Close();
+                MessageBox.Show(query);
+                ListProducts(query);
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Sepete Ekle Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Marka Seçimi Hatası");
             }
-
-        }
-
-        private void buttonPriceFilter_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            formShopCart.ShowDialog();
-        }
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            TreeView treeView = sender as TreeView;
-            MessageBox.Show(treeView.SelectedNode.ToString());
-
         }
     }
 }
