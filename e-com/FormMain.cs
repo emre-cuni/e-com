@@ -30,13 +30,14 @@ namespace e_com
         SqlProcess sqlProcess = new SqlProcess();
         public byte[] photo;
         FormShopCart formShopCart = new FormShopCart();
-        double minPrice = 0, maxPrice;
+        double minPrice = 0, maxPrice = 99999;
+        public string email { get; set; }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             try
             {
-                if (!sqlProcess.SqlConn(sqlProcess.connString)) // veritabanı kontrolü yapılır
+                if (!sqlProcess.SqlConn(sqlProcess.connString)) // veri tabanı bağlantı kontrolü yapılır
                 {
                     this.Enabled = false;
                     MessageBox.Show("SQL Bağlantısı Kurulamadı!", "HATA", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -50,7 +51,7 @@ namespace e_com
             }
         }
 
-        private void panelDescription_Click(object sender, EventArgs e)
+        private void panelDescription_Click(object sender, EventArgs e) // ürüne tıklandığında ürün detay formu hazırlanır ve açılır
         {
             try
             {
@@ -78,8 +79,13 @@ namespace e_com
                 formDescription.pictureBox1.Image = imageList1.Images[indis];
                 formDescription.labelName.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productName"].ToString();
                 formDescription.labelBrand.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productBrand"].ToString();
-                formDescription.labelPrice.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productPrice"].ToString();
-                formDescription.labelDescription.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productDescription"].ToString();
+                formDescription.labelPrice.Text = "₺" +  sqlProcess.dataSet.Tables[0].Rows[indis]["productPrice"].ToString();
+                formDescription.labelDescription.Text = sqlProcess.dataSet.Tables[0].Rows[indis]["productDescription"].ToString().Trim();
+                formDescription.labelName.AutoSize = true;
+                formDescription.labelName.MaximumSize = new Size(400, 200);
+                formDescription.labelDescription.AutoSize = true;
+                formDescription.labelDescription.MaximumSize = new Size(600, 200);
+                formDescription.Text = formDescription.labelName.Text.ToString().Trim() + " Detayı";
                 formDescription.ShowDialog();
             }
             catch (Exception ex)
@@ -88,7 +94,7 @@ namespace e_com
             }
         }
 
-        private void buttonAddToCart_Click(object sender, EventArgs e)
+        private void buttonAddToCart_Click(object sender, EventArgs e) // ürünleri sepete ekler
         {
             try
             {
@@ -103,17 +109,19 @@ namespace e_com
                 if (!formShopCart.shopCart.ContainsKey(button.Name))
                     formShopCart.shopCart.Add(button.Name, Tuple.Create(1, total, Image.FromStream(memoryStream)));
                 else
-                    formShopCart.shopCart[button.Name] = Tuple.Create(2, total, Image.FromStream(memoryStream));
+                {
+                    var item = formShopCart.shopCart[button.Name];
+                    int quantity = item.Item1 + 1;
+                    formShopCart.shopCart[button.Name] = Tuple.Create(quantity, total, Image.FromStream(memoryStream));
+                }
 
                 MessageBox.Show("Ürün Sepete Eklendi.", "BİLGİ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 memoryStream.Close();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Sepete Ekle Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
 
         private void buttonPriceFilter_Click(object sender, EventArgs e)
@@ -123,8 +131,13 @@ namespace e_com
                 flowLayoutPanel1.Controls.Clear();
                 double.TryParse(textBoxMinPrice.Text, out minPrice);
                 double.TryParse(textBoxMaxPrice.Text, out maxPrice);
-                
-                if(minPrice > maxPrice)
+
+                minPrice = Math.Abs(minPrice);
+                maxPrice = Math.Abs(maxPrice);
+
+                if (maxPrice == 0) // en çok fiyata bir değer girilmezse max limit tanımlanır
+                    maxPrice = 9999;
+                if (minPrice > maxPrice) 
                 {
                     double temp = maxPrice;
                     maxPrice = minPrice;
@@ -132,9 +145,7 @@ namespace e_com
                     textBoxMinPrice.Text = minPrice.ToString();
                     textBoxMaxPrice.Text = maxPrice.ToString();
                 }
-                if (maxPrice == 0)
-                    maxPrice = double.MaxValue;
-                MessageBox.Show(minPrice + "\n" + maxPrice);
+
                 query = $"Select * From Table_Product Where productPrice >= '{minPrice}' And productPrice <= '{maxPrice}'";
                 ListProducts(query);
             }
@@ -144,15 +155,15 @@ namespace e_com
             }
         }
 
-        private void treeView1_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void treeViewCategories_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             try
             {
                 flowLayoutPanel1.Controls.Clear(); //listelenen ürünler temizlenir 
-                if (treeView1.SelectedNode.Parent == null) //istenilen kategorideki ürünlerin listelenmesi için sql sorgusu hazırlanır
-                    query = $"Select * From Table_Product Where productSupCategory = '{treeView1.SelectedNode.Text}'";
+                if (treeViewCategories.SelectedNode.Parent == null) //istenilen kategorideki ürünlerin listelenmesi için sql sorgusu hazırlanır
+                    query = $"Select * From Table_Product Where productSupCategory = '{treeViewCategories.SelectedNode.Text}'";
                 else
-                    query = $"Select * From Table_Product Where productSubCategory = '{treeView1.SelectedNode.Text}'";
+                    query = $"Select * From Table_Product Where productSubCategory = '{treeViewCategories.SelectedNode.Text}'";
 
                 ListProducts(query);
             }
@@ -166,6 +177,7 @@ namespace e_com
         {
             try
             {
+                imageList1.Images.Clear();
                 sqlProcess.SqlGetProduct(filterQuery);
                 for (int i = 0; i < sqlProcess.dataSet.Tables[0].Rows.Count; i++)
                 {
@@ -185,9 +197,9 @@ namespace e_com
                     //imageList1.Images[i].Tag = pictureBox.Image;
 
                     //ürün adının label'a yazılır
-                    labelProductName.Text = sqlProcess.dataSet.Tables[0].Rows[i]["productName"].ToString();
+                    labelProductName.Text = sqlProcess.dataSet.Tables[0].Rows[i]["productName"].ToString().Trim();
                     //ürün fiyatı label'a yazılır
-                    labelProductPrice.Text = "₺" + sqlProcess.dataSet.Tables[0].Rows[i]["productPrice"].ToString();
+                    labelProductPrice.Text = "₺" + sqlProcess.dataSet.Tables[0].Rows[i]["productPrice"].ToString().Trim();
 
                     //ürün bilgileri panele eklenir
                     panel.Controls.Add(pictureBox);
@@ -211,7 +223,8 @@ namespace e_com
 
                     //label ayarları yapılır
                     labelProductName.Location = new Point(4, 234);
-                    labelProductName.Size = new Size(468, 18);
+                    labelProductName.AutoSize = true;
+                    labelProductName.MaximumSize = new Size(214, 18);
                     labelProductName.ForeColor = Color.White;
                     labelProductName.Tag = i;
                     labelProductName.Click += new EventHandler(panelDescription_Click);
@@ -241,7 +254,7 @@ namespace e_com
 
                     bool parentNodeExists = false;
                     bool childeNodeExists = false;
-                    foreach (TreeNode node in treeView1.Nodes)
+                    foreach (TreeNode node in treeViewCategories.Nodes)
                     {
                         if (node.Text == productSupCategory)
                         {
@@ -257,17 +270,17 @@ namespace e_com
                     }
 
                     if (!parentNodeExists)
-                        treeView1.Nodes.Add(productSupCategory);
+                        treeViewCategories.Nodes.Add(productSupCategory);
 
                     // Yeni alt kategoriyi ekle
-                    TreeNode parentNode = treeView1.Nodes.Cast<TreeNode>().FirstOrDefault(n => n.Text == productSupCategory);
+                    TreeNode parentNode = treeViewCategories.Nodes.Cast<TreeNode>().FirstOrDefault(n => n.Text == productSupCategory);
                     if (!childeNodeExists)
                         parentNode.Nodes.Add(productSubCategory);
 
                     //markaların eklenmesi
                     string brand = sqlProcess.dataSet.Tables[0].Rows[i]["productBrand"].ToString().Trim();
-                    if (!checkedListBox1.Items.Contains(brand)) // aynı markadan başka ürün ekleyip bunu kontrol et
-                        checkedListBox1.Items.Add(brand);
+                    if (!checkedListBoxBrands.Items.Contains(brand)) // aynı markadan başka ürün ekleyip bunu kontrol et
+                        checkedListBoxBrands.Items.Add(brand);
 
                 }
             }
@@ -277,30 +290,79 @@ namespace e_com
             }
         }
 
-        private void checkedListBox1_Click(object sender, EventArgs e)
+        private void buttonGoToCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                formShopCart.email = email;
+                formShopCart.ShowDialog();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Sepete Git Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBoxPrice_Enter(object sender, EventArgs e)
+        {
+            try
+            {
+                TextBox textBox = (TextBox)sender;
+                textBox.Text = string.Empty;
+                textBox.ForeColor = Color.Black;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Fiyat Placeholder Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBoxPrice_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                TextBox textBox = (TextBox)sender;
+                if (textBox.Text == string.Empty)
+                {
+                    switch (textBox.Name)
+                    {
+                        case "textBoxMinPrice":
+                            textBox.Text = "En Az";
+                            break;
+                        case "textBoxMaxPrice":
+                            textBox.Text = "En Çok";
+                            break;
+                    }
+                    textBox.ForeColor = Color.Silver;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Fiyat Placeholder Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void checkedListBoxBrands_Click(object sender, EventArgs e) // markaya göre filtreleme yapar
         {
             try
             {
                 flowLayoutPanel1.Controls.Clear();
                 query = "Select * From Table_Product ";
-                checkedListBox1.SetItemChecked(checkedListBox1.SelectedIndex, !checkedListBox1.GetItemChecked(checkedListBox1.SelectedIndex));
+                checkedListBoxBrands.SetItemChecked(checkedListBoxBrands.SelectedIndex, !checkedListBoxBrands.GetItemChecked(checkedListBoxBrands.SelectedIndex));
 
-                
-                if (checkedListBox1.CheckedItems.Count > 0)
+                if (checkedListBoxBrands.CheckedItems.Count > 0)
                 {
                     query += "Where";
-                    foreach (string title in checkedListBox1.CheckedItems)
+                    foreach (string title in checkedListBoxBrands.CheckedItems)
                     {
-                        if (checkedListBox1.CheckedItems[0].ToString() == title)
+                        if (checkedListBoxBrands.CheckedItems[0].ToString() == title)
                             query += $" productBrand = '{title}'";
                         else
                             query += $" Or productBrand = '{title}'";
                     }
-                        
                 }
-                MessageBox.Show(query);
                 ListProducts(query);
-
             }
             catch (Exception ex)
             {

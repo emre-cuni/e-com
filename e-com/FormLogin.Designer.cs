@@ -79,7 +79,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 155);
+            this.label3.Location = new System.Drawing.Point(19, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 18);
             this.label3.TabIndex = 5;
@@ -88,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 112);
+            this.label2.Location = new System.Drawing.Point(35, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 18);
             this.label2.TabIndex = 4;
@@ -96,9 +96,9 @@
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(86, 193);
+            this.buttonLogin.Location = new System.Drawing.Point(80, 193);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(203, 35);
+            this.buttonLogin.Size = new System.Drawing.Size(211, 35);
             this.buttonLogin.TabIndex = 3;
             this.buttonLogin.Text = "Giriş Yap";
             this.buttonLogin.UseVisualStyleBackColor = true;
@@ -108,20 +108,24 @@
             // 
             this.textBoxLoginPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLoginPassword.Location = new System.Drawing.Point(86, 149);
+            this.textBoxLoginPassword.Location = new System.Drawing.Point(80, 149);
             this.textBoxLoginPassword.Name = "textBoxLoginPassword";
             this.textBoxLoginPassword.PasswordChar = '*';
-            this.textBoxLoginPassword.Size = new System.Drawing.Size(203, 24);
+            this.textBoxLoginPassword.Size = new System.Drawing.Size(211, 24);
             this.textBoxLoginPassword.TabIndex = 2;
             // 
             // textBoxLoginMail
             // 
             this.textBoxLoginMail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLoginMail.Location = new System.Drawing.Point(86, 106);
+            this.textBoxLoginMail.ForeColor = System.Drawing.Color.Silver;
+            this.textBoxLoginMail.Location = new System.Drawing.Point(80, 106);
             this.textBoxLoginMail.Name = "textBoxLoginMail";
-            this.textBoxLoginMail.Size = new System.Drawing.Size(203, 24);
+            this.textBoxLoginMail.Size = new System.Drawing.Size(211, 24);
             this.textBoxLoginMail.TabIndex = 1;
+            this.textBoxLoginMail.Text = "(example@example.com)";
+            this.textBoxLoginMail.Enter += new System.EventHandler(this.textBoxMail_Enter);
+            this.textBoxLoginMail.Leave += new System.EventHandler(this.textBoxMail_Leave);
             // 
             // label1
             // 
@@ -164,7 +168,7 @@
             this.textBoxRegisterPassword.Location = new System.Drawing.Point(122, 168);
             this.textBoxRegisterPassword.Name = "textBoxRegisterPassword";
             this.textBoxRegisterPassword.Size = new System.Drawing.Size(183, 24);
-            this.textBoxRegisterPassword.TabIndex = 15;
+            this.textBoxRegisterPassword.TabIndex = 3;
             this.textBoxRegisterPassword.UseSystemPasswordChar = true;
             // 
             // label10
@@ -236,7 +240,7 @@
             this.buttonRegister.Location = new System.Drawing.Point(122, 260);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(183, 35);
-            this.buttonRegister.TabIndex = 5;
+            this.buttonRegister.TabIndex = 6;
             this.buttonRegister.Text = "Kayıt Ol";
             this.buttonRegister.UseVisualStyleBackColor = true;
             this.buttonRegister.Click += new System.EventHandler(this.buttonRegister_Click);
@@ -248,25 +252,31 @@
             this.maskedTextBoxRegisterCreditCard.Location = new System.Drawing.Point(122, 230);
             this.maskedTextBoxRegisterCreditCard.Name = "maskedTextBoxRegisterCreditCard";
             this.maskedTextBoxRegisterCreditCard.Size = new System.Drawing.Size(183, 24);
-            this.maskedTextBoxRegisterCreditCard.TabIndex = 4;
+            this.maskedTextBoxRegisterCreditCard.TabIndex = 5;
             // 
             // maskedTextBoxRegisterBirthDate
             // 
             this.maskedTextBoxRegisterBirthDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.maskedTextBoxRegisterBirthDate.Location = new System.Drawing.Point(122, 199);
+            this.maskedTextBoxRegisterBirthDate.Mask = "0000-00-00";
             this.maskedTextBoxRegisterBirthDate.Name = "maskedTextBoxRegisterBirthDate";
             this.maskedTextBoxRegisterBirthDate.Size = new System.Drawing.Size(183, 24);
-            this.maskedTextBoxRegisterBirthDate.TabIndex = 3;
+            this.maskedTextBoxRegisterBirthDate.TabIndex = 4;
+            this.maskedTextBoxRegisterBirthDate.ValidatingType = typeof(System.DateTime);
             // 
             // textBoxRegisterMail
             // 
             this.textBoxRegisterMail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRegisterMail.ForeColor = System.Drawing.Color.Silver;
             this.textBoxRegisterMail.Location = new System.Drawing.Point(122, 137);
             this.textBoxRegisterMail.Name = "textBoxRegisterMail";
             this.textBoxRegisterMail.Size = new System.Drawing.Size(183, 24);
             this.textBoxRegisterMail.TabIndex = 2;
+            this.textBoxRegisterMail.Text = "(example@example.com)";
+            this.textBoxRegisterMail.Enter += new System.EventHandler(this.textBoxMail_Enter);
+            this.textBoxRegisterMail.Leave += new System.EventHandler(this.textBoxMail_Leave);
             // 
             // textBoxRegisterSurname
             // 
@@ -297,6 +307,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(338, 374);
             this.tabControl1.TabIndex = 3;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageLogin
             // 
@@ -311,7 +322,7 @@
             // 
             // tabPageRegister
             // 
-            this.tabPageRegister.BackColor = System.Drawing.Color.Turquoise;
+            this.tabPageRegister.BackColor = System.Drawing.Color.LightSeaGreen;
             this.tabPageRegister.Controls.Add(this.groupBoxRegister);
             this.tabPageRegister.Location = new System.Drawing.Point(4, 27);
             this.tabPageRegister.Name = "tabPageRegister";
@@ -350,7 +361,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBoxRegister;
         private System.Windows.Forms.TextBox textBoxLoginPassword;
-        private System.Windows.Forms.TextBox textBoxLoginMail;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -371,6 +381,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxRegisterPassword;
         private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.TextBox textBoxLoginMail;
     }
 }
 

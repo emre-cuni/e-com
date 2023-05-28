@@ -22,7 +22,5 @@ namespace e_com
         {
             this.Close();
         }
-
-       
     }
 }

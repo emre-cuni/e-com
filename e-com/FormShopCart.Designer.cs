@@ -99,7 +99,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FormShopCart";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FormShopCart";
+            this.Text = "Alışveriş Sepeti";
             this.Load += new System.EventHandler(this.FormShopCart_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -111,8 +111,8 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonCompleteShopping;
-        private System.Windows.Forms.Label labelTotal;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Splitter splitter1;
+        public System.Windows.Forms.Label labelTotal;
     }
 }

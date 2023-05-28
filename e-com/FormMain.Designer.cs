@@ -30,18 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBoxCart = new System.Windows.Forms.GroupBox();
+            this.buttonGoToCart = new System.Windows.Forms.Button();
             this.groupBoxPrice = new System.Windows.Forms.GroupBox();
             this.buttonPriceFilter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxMaxPrice = new System.Windows.Forms.TextBox();
             this.textBoxMinPrice = new System.Windows.Forms.TextBox();
             this.groupBoxTrade = new System.Windows.Forms.GroupBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.checkedListBoxBrands = new System.Windows.Forms.CheckedListBox();
             this.groupBoxCategory = new System.Windows.Forms.GroupBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeViewCategories = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
+            this.groupBoxCart.SuspendLayout();
             this.groupBoxPrice.SuspendLayout();
             this.groupBoxTrade.SuspendLayout();
             this.groupBoxCategory.SuspendLayout();
@@ -49,6 +52,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.groupBoxCart);
             this.panel1.Controls.Add(this.groupBoxPrice);
             this.panel1.Controls.Add(this.groupBoxTrade);
             this.panel1.Controls.Add(this.groupBoxCategory);
@@ -58,6 +62,29 @@
             this.panel1.Size = new System.Drawing.Size(256, 744);
             this.panel1.TabIndex = 1;
             // 
+            // groupBoxCart
+            // 
+            this.groupBoxCart.Controls.Add(this.buttonGoToCart);
+            this.groupBoxCart.ForeColor = System.Drawing.Color.White;
+            this.groupBoxCart.Location = new System.Drawing.Point(3, 609);
+            this.groupBoxCart.Name = "groupBoxCart";
+            this.groupBoxCart.Size = new System.Drawing.Size(243, 100);
+            this.groupBoxCart.TabIndex = 4;
+            this.groupBoxCart.TabStop = false;
+            this.groupBoxCart.Text = "Sepet:";
+            // 
+            // buttonGoToCart
+            // 
+            this.buttonGoToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.buttonGoToCart.ForeColor = System.Drawing.Color.Black;
+            this.buttonGoToCart.Location = new System.Drawing.Point(6, 32);
+            this.buttonGoToCart.Name = "buttonGoToCart";
+            this.buttonGoToCart.Size = new System.Drawing.Size(226, 44);
+            this.buttonGoToCart.TabIndex = 3;
+            this.buttonGoToCart.Text = "Sepete Git";
+            this.buttonGoToCart.UseVisualStyleBackColor = true;
+            this.buttonGoToCart.Click += new System.EventHandler(this.buttonGoToCart_Click);
+            // 
             // groupBoxPrice
             // 
             this.groupBoxPrice.Controls.Add(this.buttonPriceFilter);
@@ -65,7 +92,7 @@
             this.groupBoxPrice.Controls.Add(this.textBoxMaxPrice);
             this.groupBoxPrice.Controls.Add(this.textBoxMinPrice);
             this.groupBoxPrice.ForeColor = System.Drawing.Color.White;
-            this.groupBoxPrice.Location = new System.Drawing.Point(3, 570);
+            this.groupBoxPrice.Location = new System.Drawing.Point(3, 528);
             this.groupBoxPrice.Name = "groupBoxPrice";
             this.groupBoxPrice.Size = new System.Drawing.Size(243, 65);
             this.groupBoxPrice.TabIndex = 2;
@@ -96,63 +123,70 @@
             // 
             // textBoxMaxPrice
             // 
+            this.textBoxMaxPrice.ForeColor = System.Drawing.Color.Silver;
             this.textBoxMaxPrice.Location = new System.Drawing.Point(112, 26);
             this.textBoxMaxPrice.Name = "textBoxMaxPrice";
             this.textBoxMaxPrice.Size = new System.Drawing.Size(71, 24);
             this.textBoxMaxPrice.TabIndex = 1;
+            this.textBoxMaxPrice.Text = "En Çok";
+            this.textBoxMaxPrice.Enter += new System.EventHandler(this.textBoxPrice_Enter);
+            this.textBoxMaxPrice.Leave += new System.EventHandler(this.textBoxPrice_Leave);
             // 
             // textBoxMinPrice
             // 
+            this.textBoxMinPrice.ForeColor = System.Drawing.Color.Silver;
             this.textBoxMinPrice.Location = new System.Drawing.Point(7, 26);
             this.textBoxMinPrice.Name = "textBoxMinPrice";
             this.textBoxMinPrice.Size = new System.Drawing.Size(71, 24);
             this.textBoxMinPrice.TabIndex = 0;
-            this.textBoxMinPrice.Text = "Placeholder yap";
+            this.textBoxMinPrice.Text = "En Az";
+            this.textBoxMinPrice.Enter += new System.EventHandler(this.textBoxPrice_Enter);
+            this.textBoxMinPrice.Leave += new System.EventHandler(this.textBoxPrice_Leave);
             // 
             // groupBoxTrade
             // 
-            this.groupBoxTrade.Controls.Add(this.checkedListBox1);
+            this.groupBoxTrade.Controls.Add(this.checkedListBoxBrands);
             this.groupBoxTrade.ForeColor = System.Drawing.Color.White;
-            this.groupBoxTrade.Location = new System.Drawing.Point(3, 346);
+            this.groupBoxTrade.Location = new System.Drawing.Point(3, 304);
             this.groupBoxTrade.Name = "groupBoxTrade";
             this.groupBoxTrade.Size = new System.Drawing.Size(243, 210);
             this.groupBoxTrade.TabIndex = 1;
             this.groupBoxTrade.TabStop = false;
             this.groupBoxTrade.Text = "Marka:";
             // 
-            // checkedListBox1
+            // checkedListBoxBrands
             // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.checkedListBoxBrands.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkedListBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(7, 24);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(230, 175);
-            this.checkedListBox1.TabIndex = 0;
-            this.checkedListBox1.Click += new System.EventHandler(this.checkedListBox1_Click);
+            this.checkedListBoxBrands.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            this.checkedListBoxBrands.FormattingEnabled = true;
+            this.checkedListBoxBrands.Location = new System.Drawing.Point(7, 24);
+            this.checkedListBoxBrands.Name = "checkedListBoxBrands";
+            this.checkedListBoxBrands.Size = new System.Drawing.Size(230, 175);
+            this.checkedListBoxBrands.TabIndex = 0;
+            this.checkedListBoxBrands.Click += new System.EventHandler(this.checkedListBoxBrands_Click);
             // 
             // groupBoxCategory
             // 
-            this.groupBoxCategory.Controls.Add(this.treeView1);
+            this.groupBoxCategory.Controls.Add(this.treeViewCategories);
             this.groupBoxCategory.ForeColor = System.Drawing.Color.White;
-            this.groupBoxCategory.Location = new System.Drawing.Point(3, 53);
+            this.groupBoxCategory.Location = new System.Drawing.Point(3, 11);
             this.groupBoxCategory.Name = "groupBoxCategory";
             this.groupBoxCategory.Size = new System.Drawing.Size(243, 279);
             this.groupBoxCategory.TabIndex = 0;
             this.groupBoxCategory.TabStop = false;
             this.groupBoxCategory.Text = "Kategori:";
             // 
-            // treeView1
+            // treeViewCategories
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.treeViewCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            this.treeView1.Location = new System.Drawing.Point(6, 23);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(231, 250);
-            this.treeView1.TabIndex = 0;
-            this.treeView1.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseDoubleClick);
+            this.treeViewCategories.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            this.treeViewCategories.Location = new System.Drawing.Point(6, 23);
+            this.treeViewCategories.Name = "treeViewCategories";
+            this.treeViewCategories.Size = new System.Drawing.Size(231, 250);
+            this.treeViewCategories.TabIndex = 0;
+            this.treeViewCategories.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewCategories_NodeMouseDoubleClick);
             // 
             // imageList1
             // 
@@ -167,7 +201,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(256, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(729, 744);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(739, 744);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // FormMain
@@ -175,16 +209,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(985, 744);
+            this.ClientSize = new System.Drawing.Size(995, 744);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormMain";
+            this.Text = "e-com";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.panel1.ResumeLayout(false);
+            this.groupBoxCart.ResumeLayout(false);
             this.groupBoxPrice.ResumeLayout(false);
             this.groupBoxPrice.PerformLayout();
             this.groupBoxTrade.ResumeLayout(false);
@@ -196,16 +231,18 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeViewCategories;
         private System.Windows.Forms.GroupBox groupBoxPrice;
         private System.Windows.Forms.Button buttonPriceFilter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxMaxPrice;
         private System.Windows.Forms.TextBox textBoxMinPrice;
         private System.Windows.Forms.GroupBox groupBoxTrade;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBoxBrands;
         private System.Windows.Forms.GroupBox groupBoxCategory;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         public System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button buttonGoToCart;
+        private System.Windows.Forms.GroupBox groupBoxCart;
     }
 }

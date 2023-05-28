@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormCompleteShopping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCompleteShopping.Designer.cs">
+      <DependentUpon>FormCompleteShopping.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormDescription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,8 +78,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShopCart.cs" />
     <Compile Include="SqlProcess.cs" />
+    <EmbeddedResource Include="FormCompleteShopping.resx">
+      <DependentUpon>FormCompleteShopping.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormDescription.resx">
       <DependentUpon>FormDescription.cs</DependentUpon>
     </EmbeddedResource>

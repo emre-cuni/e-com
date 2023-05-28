@@ -60,7 +60,7 @@
             this.labelBrand.AutoSize = true;
             this.labelBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelBrand.ForeColor = System.Drawing.Color.Aqua;
-            this.labelBrand.Location = new System.Drawing.Point(239, 62);
+            this.labelBrand.Location = new System.Drawing.Point(239, 81);
             this.labelBrand.Name = "labelBrand";
             this.labelBrand.Size = new System.Drawing.Size(52, 18);
             this.labelBrand.TabIndex = 2;
@@ -71,7 +71,7 @@
             this.labelPrice.AutoSize = true;
             this.labelPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelPrice.ForeColor = System.Drawing.Color.Green;
-            this.labelPrice.Location = new System.Drawing.Point(238, 100);
+            this.labelPrice.Location = new System.Drawing.Point(238, 141);
             this.labelPrice.Name = "labelPrice";
             this.labelPrice.Size = new System.Drawing.Size(76, 25);
             this.labelPrice.TabIndex = 3;
@@ -80,12 +80,12 @@
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.labelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.labelDescription.ForeColor = System.Drawing.Color.White;
-            this.labelDescription.Location = new System.Drawing.Point(12, 237);
+            this.labelDescription.Location = new System.Drawing.Point(12, 233);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(46, 18);
-            this.labelDescription.TabIndex = 6;
+            this.labelDescription.Size = new System.Drawing.Size(52, 18);
+            this.labelDescription.TabIndex = 4;
             this.labelDescription.Text = "label1";
             // 
             // FormDescription

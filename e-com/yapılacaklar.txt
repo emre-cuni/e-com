@@ -1,58 +1,61 @@
-sepet uygulamasýnda 2 farklý giriþ olacak admin ve customer olarak
-adminin ürün ekleme ve fiyat düzenleme yetkisi olacak
-customer ürünleri istek listesine ve sepete ekleyebilecek
-sepete eklenen ödemeler sanal ödeme ekraný yap(customer'ýn db'de kayýtlý kart bilgilerini girince customer'ýn mail adresine kod gönder)
-kart numarasýný girerken anlýk kontrol yapýlabilir(doðru numara girildiðinde yanýnda yeþil bir tik gibi
-customer kayýt sekmesi de olacak
-admin kaydý admin giriþinden sonra yapýlabilecek
-XX db'de ürün fotosu da olsun XX 
-XX ekrana sýðmayacak ürün sayýsýný scrollbar'la nasýl kaydýracaðýna bak XX
-db'ye kayýtlar þifrelenerek eklenecek
-XX (panel iþe yarýyor gibi//flow panel'e de bak)https://www.technopat.net/sosyal/konu/windows-formun-icinde-kaydirmali-bir-alan-yapma.1752148/ XX
-XX customer giriþ yapýnca rastgele ürünler listelenecek XX //bütün ürünler listeleniyor
-XX görüntüleme seçenekleri eklenebelir(2.fazda) XX
-XX ürün seçildiði zaman mini form açýlacak ürün detaylarý yazacak XX
-sepet ekranýnda sepetteki ürünler arttýrýlabilir,azaltýlabilir,silinebilir olacak
-mail textBoxlarýnda "@" olup olmadýðýný kontrol et
-"Kayýt ol"a týklanýnca form'un text'ini deðiþtir tekrar "Kayýt Ol"dan "Giriþ Yap"a geçince de deðiþtir
-Admin giriþini 2. fazda yap
-Doðum günü olan müþteriye doðum günü mesajý yayýnla
-XX Main formu açýlýnca bütün kategoriler açýk gelsin XX
-Kayýt yapýldýktan sonra otomatik giriþ yap sayfasýna atsýn
-Hata logu tuttur pop-up'larda kýsa mesaj ver log'a yönlendir
-Textbox'larý büyüt mail sýðmýyor(kredi kartýný da kontrol et) //loginform
-
-***************************************************************************************************
-* ayný email,isimle kayýt yapýlamasýn
-* maili lower yap
-* kayýdý yaptýktan sonra giriþ yap - giriþ yaptýktan sonra kayýt yap
-
-20.05.2023
-** admin uygulamasýný yaz XX
-** veritabanýnýn yeniden oluþtur(kategori ile birlikte) XX
-** button, textbox ve  picturebox'ý ekleyecek yöntem bul XX
-** sql read ve get metotlarýný tekte almaya çalýþ; 
-** ürün adlarýndan otomatik alt satýra indir 
-
-21.05.2023
-* description sayfasýnda ürün resmi, ürün açýklamasý, counter ve sepete ekle butonu XX //counter ve sepete ekle 2. fazda olacak description formatlamasý düzenlenecek
-* 2. fazda stok durumu ekle
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX sepete eklenen ödemeler sanal ödeme ekraný yap(customer'ýn db'de kayýtlý kart bilgilerini girince customer'ýn mail adresine kod gönder) XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX customer kayýt sekmesi de olacak XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX db'de ürün fotosu da olsun XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ekrana sýðmayacak ürün sayýsýný scrollbar'la nasýl kaydýracaðýna bak XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (panel iþe yarýyor gibi//flow panel'e de bak)https://www.technopat.net/sosyal/konu/windows-formun-icinde-kaydirmali-bir-alan-yapma.1752148/ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX customer giriþ yapýnca rastgele ürünler listelenecek XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX //bütün ürünler listeleniyor
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX görüntüleme seçenekleri eklenebelir(2.fazda) XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ürün seçildiði zaman mini form açýlacak ürün detaylarý yazacak XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX mail textBoxlarýnda "@" olup olmadýðýný kontrol et XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX "Kayýt ol"a týklanýnca form'un text'ini deðiþtir tekrar "Kayýt Ol"dan "Giriþ Yap"a geçince de deðiþtir XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Main formu açýlýnca bütün kategoriler açýk gelsin XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Kayýt yapýldýktan sonra otomatik giriþ yap sayfasýna atsýn XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Textbox'larý büyüt mail sýðmýyor(kredi kartýný da kontrol et) //loginform XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ayný email,isimle kayýt yapýlamasýn XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX maili lower yap  //ad ve soyad da XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX kayýdý yaptýktan sonra giriþ yap - giriþ yaptýktan sonra kayýt yap XX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX admin uygulamasýný yaz XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX veritabanýnýn yeniden oluþtur(kategori ile birlikte) XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX button, textbox ve  picturebox'ý ekleyecek yöntem bul XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ürün adlarýndan otomatik alt satýra indir // description XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX description sayfasýnda ürün resmi, ürün açýklamasý, counter ve sepete ekle butonu XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
 * github'a yüklerken setup dosyasý ekle
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX treeview'da seçilen node'dan filtreleme yap XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX markaya göre filtreleme XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX login formda giriþ yap ve kayýt ol sekmelerinin back color'ý farklý olsun XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ücret filtresini ekle XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX ücret filtresine negatif deðer girildiðinde ? XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX filtreleme yapýldýktan sonra description sayfasýndaki resimler hatalý !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! fotoðraflarý imagelist'ten çektiði için olabilir XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX textboxlara placeholder ekle XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX sepetin boþ olma durumuna bak XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX kod gönderilmeden kod girilemesin XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX kayýt oldaki tabindexleri düzelt XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX loginformda giriþ yapýlamayýnca ikinci kez butona týklanýnca sql hatasý veriyor XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX markaya göre filtrelemeye týklanýnca sorgu pop-up'ý çýkýyor XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX bütün formlarýn textlerini düzenle // description form textini ürün adý + detayý yaz XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX main formdaki mail labelýný sil XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Sepet butonunu düzelt XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX maile sepet tutarýný da yazdýr XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-24.05.2023
-* treeview'da seçilen node'dan filtreleme yap XX 
 
-26.05.2023
-* markaya göre filtreleme XX
-* kategoriye göre filtreleme yapýldýktan sonra karýþýk hale geri dönme // homepage butonu ile yapýlabilir
-* seçili filtreleri temizleme seçeneði ekle
-* en son commit'te start formu düzelt
-* login formda giriþ yap ve kayýt ol sekmelerinin back color'ý farklý olsun
-* ücret filtresini ekle XX
-* ücret filtresine negatif deðer girildiðinde ?
+
+2. fazda yapýlacaklar:
+* customer ürünleri istek listesine ve sepete ekleyebilecek // 2.faz
+* admin kaydý admin giriþinden sonra yapýlabilecek // 2. faz
+* db'ye kayýtlar þifrelenerek eklenecek // 2. faz
+* Doðum günü olan müþteriye doðum günü mesajý yayýnla // 2. faz
+* Hata logu tuttur pop-up'larda kýsa mesaj ver log'a yönlendir // 2.faz
+* sql read ve get metotlarýný tekte almaya çalýþ; // 2. faz
+* stok durumu ekle // 2. faz
+* seçili filtreleri temizleme seçeneði ekle // 2. faz
+* main formda kullanýcý ayarlarýnýn olduðu bir sekme olsun // hesap ayarlarýný deðiþtirebilmek vs olsun // 2. faz
+* sepet ekranýnda sepetteki ürünler arttýrýlabilir,azaltýlabilir,silinebilir olacak // 2.faz
+* kategoriye göre filtreleme yapýldýktan sonra karýþýk hale geri dönme // homepage butonu ile yapýlabilir // 2. fazda kullanýcý sekmesinin yanýnda e-com butonu olur týklanyýnca homepage yapar
+* description formda counter ve sepete ekle // 2. faz
+* kodun geçerlilik süresi olsun // 2.faz
+* admin uygulamasýna da kayýt ile giriþ yapýlabilir olsun // 2.faz
+* ürün listesinde ürün adý panele sýðmazsa alt satýra indir
 * veritabanýný yeniden oluþtur price kýsmýný düzenleyerek //decimal(4,3)3'ü ondalýk nokta olmak üzere toplam 4 basamak olduðu anlamýna gelir. Deðerler ile sýnýrlýysa, 99.999o zaman decimal(5,3)tamam olacaktýr.
-* filtreleme yapýldýktan sonra description sayfasýndaki resimler hatalý !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! fotoðraflarý imagelist'ten çektiði için olabilir
-* textboxlara placeholder ekle
-
-***************************************************************************************************
-splitter kullanýmýna bak
+* formlara icon ekle
+* alýþveriþ tamamlandýktan sonra sepeti temizle
+* doðrulama kodunu bazen 5 karakterli oluþturuyor bunu önle // ilk karakter muhtemelen 0 oluyor
