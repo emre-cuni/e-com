@@ -1,0 +1,11 @@
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\bin\Debug\e-com(Admin).exe.config
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\bin\Debug\e-com(Admin).exe
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\bin\Debug\e-com(Admin).pdb
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\obj\Debug\e-com(Admin).csproj.AssemblyReference.cache
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\obj\Debug\e-com(Admin).csproj.SuggestedBindingRedirects.cache
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\obj\Debug\e_com_Admin_.Form1.resources
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\obj\Debug\e_com_Admin_.Properties.Resources.resources
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\obj\Debug\e-com(Admin).csproj.GenerateResource.cache
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\obj\Debug\e-com(Admin).csproj.CoreCompileInputs.cache
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\obj\Debug\e-com(Admin).exe
+C:\Users\Cuni\Desktop\Github\e-com(Admin)\e-com(Admin)\obj\Debug\e-com(Admin).pdb
